@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@luciad/ria": "file:../../Luciad/LuciadRIA_2020.X.XX/packages/es6/ria",
     "babel-polyfill": "^6.26.0",
