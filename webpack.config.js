@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const TerserPlugin = require('terser-webpack-plugin');
 
 const mainEntry = './src/index.js';
 const licenseEntry = './src/licenseloader/index.js';
@@ -27,8 +27,19 @@ module.exports = (env, argv) => {
                 errors: true
             }
         },
+        optimization: {
+            minimizer: [
+                new TerserPlugin({
+                    terserOptions: {
+                        compress: {
+                            unused: false
+                        }
+                    }
+                })
+            ]
+        },
 		// List of of entries PollyFill -> LicenseLoader -> Main App
-        entry: ['babel-polyfill', licenseEntry, mainEntry],  
+        entry: ['babel-polyfill', licenseEntry, mainEntry],
         output: {
             path: path.join(__dirname, '/dist'),
             filename: 'index.js',
